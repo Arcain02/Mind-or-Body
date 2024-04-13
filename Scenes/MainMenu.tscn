@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://c08x6kkvvscyk"]
+
+[ext_resource type="Texture2D" uid="uid://bwh053tcr0rcp" path="res://Textures/Main Menu/TitleScreen.png" id="1_x24s5"]
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_ye2vb"]
+[ext_resource type="Texture2D" uid="uid://bv4gyv0byajj6" path="res://Textures/Main Menu/TitleButtonUnpressed.png" id="2_qho7l"]
+[ext_resource type="Texture2D" uid="uid://bmcvs7mim0ylg" path="res://Textures/Main Menu/TitleButtonPressed.png" id="3_ygmqj"]
+[ext_resource type="AudioStream" uid="uid://bejqo08hn74h3" path="res://Textures/Music/Origins.ogg" id="4_ebv3f"]
+[ext_resource type="FontFile" uid="uid://cbu8vn3w6qfok" path="res://Textures/Dialouge/QuinqueFive.woff2" id="4_nv7gd"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_ye2vb")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(3, 3)
+texture = ExtResource("1_x24s5")
+metadata/_edit_lock_ = true
+
+[node name="StartText" type="RichTextLabel" parent="."]
+top_level = true
+offset_left = 486.0
+offset_top = 212.0
+offset_right = 606.0
+offset_bottom = 236.0
+theme_override_fonts/normal_font = ExtResource("4_nv7gd")
+theme_override_font_sizes/normal_font_size = 20
+text = "Start"
+
+[node name="StartButton" type="TextureButton" parent="."]
+offset_left = 465.0
+offset_top = 192.0
+offset_right = 545.0
+offset_bottom = 224.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("2_qho7l")
+texture_pressed = ExtResource("3_ygmqj")
+
+[node name="Title" type="RichTextLabel" parent="."]
+offset_left = 474.0
+offset_top = 60.0
+offset_right = 618.0
+offset_bottom = 192.0
+theme_override_fonts/normal_font = ExtResource("4_nv7gd")
+theme_override_font_sizes/normal_font_size = 30
+text = "Mind
+ Or 
+Body"
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ebv3f")
+autoplay = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

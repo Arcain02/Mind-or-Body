@@ -1,0 +1,127 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsue43jjsn4yg"]
+
+[ext_resource type="Texture2D" uid="uid://bloxmttlhp8f" path="res://Textures/Questioning/QuestionSpace.png" id="1_2h7o8"]
+[ext_resource type="Script" path="res://Scripts/Questions.gd" id="1_jmg5e"]
+[ext_resource type="FontFile" uid="uid://cbu8vn3w6qfok" path="res://Textures/Dialouge/QuinqueFive.woff2" id="2_p2gpy"]
+[ext_resource type="AudioStream" uid="uid://booy6b54tpm3e" path="res://Textures/Music/Finding Wonderland.mp3" id="2_qvmw5"]
+[ext_resource type="Texture2D" uid="uid://csaw84ch1ybid" path="res://Textures/Card Game/GreyBox.png" id="5_osn1h"]
+
+[sub_resource type="Animation" id="Animation_nm3k8"]
+resource_name = "Fade Out"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fade:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uyd11"]
+_data = {
+"Fade Out": SubResource("Animation_nm3k8")
+}
+
+[node name="Questions" type="Node2D"]
+script = ExtResource("1_jmg5e")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(14, 280)
+stream = ExtResource("2_qvmw5")
+autoplay = true
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 720.0
+offset_bottom = 405.0
+texture = ExtResource("1_2h7o8")
+metadata/_edit_lock_ = true
+
+[node name="Question" type="RichTextLabel" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 704.0
+offset_bottom = 136.0
+theme_override_fonts/normal_font = ExtResource("2_p2gpy")
+theme_override_font_sizes/normal_font_size = 15
+text = "If I were to replace every part of my body would I really be me?
+"
+metadata/_edit_lock_ = true
+
+[node name="LabelAnswerA" type="RichTextLabel" parent="."]
+offset_left = 16.0
+offset_top = 152.0
+offset_right = 576.0
+offset_bottom = 192.0
+theme_override_fonts/normal_font = ExtResource("2_p2gpy")
+theme_override_font_sizes/normal_font_size = 10
+text = "Probably Yeah."
+
+[node name="AnswerA" type="TextureButton" parent="LabelAnswerA"]
+layout_mode = 0
+offset_top = -8.0
+offset_right = 432.0
+offset_bottom = 40.0
+stretch_mode = 0
+
+[node name="LabelAnswerB" type="RichTextLabel" parent="."]
+offset_left = 16.0
+offset_top = 216.0
+offset_right = 576.0
+offset_bottom = 256.0
+theme_override_fonts/normal_font = ExtResource("2_p2gpy")
+theme_override_font_sizes/normal_font_size = 10
+text = "Not really."
+
+[node name="AnswerB" type="TextureButton" parent="LabelAnswerB"]
+layout_mode = 0
+offset_top = -8.0
+offset_right = 432.0
+offset_bottom = 40.0
+
+[node name="LabelAnswerC" type="RichTextLabel" parent="."]
+offset_left = 16.0
+offset_top = 280.0
+offset_right = 512.0
+offset_bottom = 320.0
+theme_override_fonts/normal_font = ExtResource("2_p2gpy")
+theme_override_font_sizes/normal_font_size = 10
+text = "No. My experiences were unique. I wouldn’t learn the same things from different experiences."
+
+[node name="AnswerC" type="TextureButton" parent="LabelAnswerC"]
+layout_mode = 0
+offset_top = -8.0
+offset_right = 432.0
+offset_bottom = 40.0
+
+[node name="Fade" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_right = 720.0
+offset_bottom = 405.0
+texture = ExtResource("5_osn1h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uyd11")
+}
+
+[connection signal="pressed" from="LabelAnswerA/AnswerA" to="." method="_on_answer_a_pressed"]
+[connection signal="pressed" from="LabelAnswerB/AnswerB" to="." method="_on_answer_b_pressed"]
+[connection signal="pressed" from="LabelAnswerC/AnswerC" to="." method="_on_answer_c_pressed"]

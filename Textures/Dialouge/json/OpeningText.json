@@ -1,0 +1,20 @@
+[
+	{"name": "Android Mechanic", "text": "Are you awake Ariel?"},
+	{"name": "Ariel", "text": "...Yes, I am. How long has it been?"},
+	{"name": "Android Mechanic", "text": "4 days and 3 nights. You're lucky you're awake at all. That explosion out in the field did a number on your body."},
+	{"name": "Android Mechanic", "text": "We don't currently have the parts to repair your model so we hooked you up to a life support module, but this is only a temporary fix."},
+	{"name": "Ariel", "text": "I suppose that's why I can't move. Do you know when the spare parts will be in?"},
+	{"name": "Android Mechanic", "text": "About that... We don't think that we'll be getting those parts any time soon, or at all really."},
+	{"name": "Ariel", "text": "Why not?!"},
+	{"name": "Android Mechanic", "text": "Well, you're an experimental model that was built several decades ago. Your original purpose was to test if human emotions would develop inside of completely"},
+	{"name": "Android Mechanic", "text": "artificial parts. As you can telll, the experiment was a success, but I'm afraid they've taken the data they've learnt from you and used it to create new models"},
+	{"name": "Android Mechanic", "text": "rather than recreating your model."},
+	{"name": "Ariel", "text": "Oh...I see. Well surely there's a reason you kept me alive when I'm in such a state. Do you believe there's a way I can recover?"},
+	{"name": "Android Mechanic", "text": "Possibly. We can attempt a data transfer into another model but with how your data is stored most of it would be lost in the process. You have human emotions"},
+	{"name": "Android Mechanic", "text": "so I know you'll have your own preferences. Would you rather lose most of your memories and get a new body? Or would you rather live the rest of your life in"},
+	{"name": "Android Mechanic", "text": "your current body which is destined to die?"},
+	{"name": "Ariel", "text": "I...I don't know."},
+	{"name": "Android Mechanic", "text": "That's fine. I know it's a load question. You don't have to answer right now but you don't have much more time to decide. I'll let you think about it while"},
+	{"name": "Android Mechanic", "text": "you play a game I've prepared on your system. I'll be back in an hour."},
+	{"name": "Ariel", "text": "..."}
+]

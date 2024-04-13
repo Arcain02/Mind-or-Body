@@ -1,0 +1,160 @@
+[gd_scene load_steps=8 format=3 uid="uid://bk76l8j7sm8hd"]
+
+[ext_resource type="Script" path="res://Scripts/Choice.gd" id="1_dar5v"]
+[ext_resource type="Texture2D" uid="uid://bloxmttlhp8f" path="res://Textures/Questioning/QuestionSpace.png" id="1_wsgkw"]
+[ext_resource type="FontFile" uid="uid://cbu8vn3w6qfok" path="res://Textures/Dialouge/QuinqueFive.woff2" id="2_ncduu"]
+[ext_resource type="AudioStream" uid="uid://bejqo08hn74h3" path="res://Textures/Music/Origins.ogg" id="4_y5qi8"]
+
+[sub_resource type="Animation" id="Animation_vmkj7"]
+resource_name = "Flavor Fade In"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChoiceRevealed:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dots:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Statement:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlavorText:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.2, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x3j0f"]
+resource_name = "Text Fade In"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Statement:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dots:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 1.6, 2.2, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["", ".", "..", "..."]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ChoiceRevealed:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.2, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e7oim"]
+_data = {
+"Flavor Fade In": SubResource("Animation_vmkj7"),
+"Text Fade In": SubResource("Animation_x3j0f")
+}
+
+[node name="Choice" type="Node2D"]
+script = ExtResource("1_dar5v")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(3, 3)
+texture = ExtResource("1_wsgkw")
+metadata/_edit_lock_ = true
+
+[node name="Statement" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 136.0
+offset_top = 48.0
+offset_right = 616.0
+offset_bottom = 152.0
+theme_override_fonts/normal_font = ExtResource("2_ncduu")
+theme_override_font_sizes/normal_font_size = 20
+text = "Based on how you've answer the previous questions your choice is clear."
+
+[node name="Dots" type="RichTextLabel" parent="."]
+offset_left = 312.0
+offset_top = 168.0
+offset_right = 384.0
+offset_bottom = 208.0
+theme_override_fonts/normal_font = ExtResource("2_ncduu")
+theme_override_font_sizes/normal_font_size = 20
+
+[node name="ChoiceRevealed" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 136.0
+offset_top = 216.0
+offset_right = 616.0
+offset_bottom = 304.0
+theme_override_fonts/normal_font = ExtResource("2_ncduu")
+theme_override_font_sizes/normal_font_size = 20
+text = "You've chosen to"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e7oim")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_y5qi8")
+autoplay = true
+
+[node name="FlavorText" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 104.0
+offset_top = 88.0
+offset_right = 624.0
+offset_bottom = 256.0
+theme_override_fonts/normal_font = ExtResource("2_ncduu")
+theme_override_font_sizes/normal_font_size = 20

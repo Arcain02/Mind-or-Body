@@ -1,0 +1,119 @@
+[gd_scene load_steps=14 format=3 uid="uid://domjfurfug3ye"]
+
+[ext_resource type="Script" path="res://Scripts/DialougePlayer.gd" id="1_4g7vm"]
+[ext_resource type="Texture2D" uid="uid://bkscfdxm3awd0" path="res://Textures/Dialouge/Textbox.png" id="1_33041"]
+[ext_resource type="FontFile" uid="uid://cbu8vn3w6qfok" path="res://Textures/Dialouge/QuinqueFive.woff2" id="2_nn4ud"]
+[ext_resource type="Texture2D" uid="uid://bbwtxj2ytlldu" path="res://Textures/Dialouge/ContinueOrEnd.png" id="4_dfysi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24np6"]
+atlas = ExtResource("4_dfysi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kdl6"]
+atlas = ExtResource("4_dfysi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_477mv"]
+atlas = ExtResource("4_dfysi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va0p8"]
+atlas = ExtResource("4_dfysi")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4fmk"]
+atlas = ExtResource("4_dfysi")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hknvq"]
+atlas = ExtResource("4_dfysi")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpv4v"]
+atlas = ExtResource("4_dfysi")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8dxs"]
+atlas = ExtResource("4_dfysi")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rt03l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24np6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kdl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_477mv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va0p8")
+}],
+"loop": true,
+"name": &"Continue",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4fmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hknvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpv4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8dxs")
+}],
+"loop": false,
+"name": &"End",
+"speed": 8.0
+}]
+
+[node name="Dialouge" type="CanvasLayer"]
+script = ExtResource("1_4g7vm")
+d_file = "res://Textures/Dialouge/json/OpeningText.json"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_top = 312.0
+offset_right = 720.0
+offset_bottom = 405.0
+texture = ExtResource("1_33041")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 40
+patch_margin_top = 40
+patch_margin_right = 40
+patch_margin_bottom = 40
+
+[node name="Name" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 272.0
+offset_bottom = 24.0
+theme_override_fonts/normal_font = ExtResource("2_nn4ud")
+theme_override_font_sizes/normal_font_size = 10
+text = "Name"
+
+[node name="Content" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 696.0
+offset_bottom = 80.0
+theme_override_fonts/normal_font = ExtResource("2_nn4ud")
+theme_override_font_sizes/normal_font_size = 10
+text = "Chatting..."
+
+[node name="Thingy" type="AnimatedSprite2D" parent="."]
+position = Vector2(699, 382)
+scale = Vector2(1.375, 1.375)
+sprite_frames = SubResource("SpriteFrames_rt03l")
+animation = &"End"
+autoplay = "Continue"
+frame = 3
+frame_progress = 1.0

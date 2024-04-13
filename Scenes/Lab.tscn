@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://d0106eumn530l"]
+
+[ext_resource type="Texture2D" uid="uid://b7b8tea0fxv11" path="res://Textures/MainRoom/Room.png" id="1_ielj4"]
+[ext_resource type="Script" path="res://Scripts/Lab.gd" id="1_q2krx"]
+[ext_resource type="PackedScene" uid="uid://domjfurfug3ye" path="res://Scenes/Dialouge.tscn" id="1_uwbxn"]
+[ext_resource type="AudioStream" uid="uid://dtr5kw0xocunt" path="res://Textures/Music/Nebula Lake.mp3" id="3_e6dqq"]
+[ext_resource type="Texture2D" uid="uid://csaw84ch1ybid" path="res://Textures/Card Game/GreyBox.png" id="4_frj7q"]
+[ext_resource type="FontFile" uid="uid://cbu8vn3w6qfok" path="res://Textures/Dialouge/QuinqueFive.woff2" id="6_g0wkp"]
+
+[sub_resource type="Animation" id="Animation_170jf"]
+resource_name = "Fade Out"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dialouge:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Play:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wfdtg"]
+_data = {
+"Fade Out": SubResource("Animation_170jf")
+}
+
+[node name="Lab" type="Node2D"]
+script = ExtResource("1_q2krx")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 720.0
+offset_bottom = 408.0
+texture = ExtResource("1_ielj4")
+
+[node name="Dialouge" parent="." instance=ExtResource("1_uwbxn")]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_e6dqq")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wfdtg")
+}
+
+[node name="Fade" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+top_level = true
+offset_right = 720.0
+offset_bottom = 405.0
+texture = ExtResource("4_frj7q")
+
+[node name="Play" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
+top_level = true
+offset_left = 208.0
+offset_top = 160.0
+offset_right = 512.0
+offset_bottom = 216.0
+theme_override_fonts/normal_font = ExtResource("6_g0wkp")
+theme_override_font_sizes/normal_font_size = 20
+text = "Guess I'll Play..."
