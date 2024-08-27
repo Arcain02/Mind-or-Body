@@ -1,5 +1,5 @@
 # Mind-or-Body
- A game created for the game jam "Future Inspire Jame #4" in Godot 4.1.3 
+ A game created for the game jam "Future Inspire Jam #4" in Godot 4.1.3 
  https://arcain02.itch.io/mind-or-body
 
 Controls: Everything can be controlled via left clicking with your mouse.
